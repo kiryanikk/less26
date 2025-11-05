@@ -8,10 +8,27 @@ const settingsElement = rootElement.querySelector(".settings");
 const colorInput = rootElement.querySelector(".settings__font-color");
 const settingsIntervalInput = rootElement.querySelector(".settings__interval");
 const fontChangeSelect = rootElement.querySelector('.settings__font-change');
+const settingsBackColorInputs = rootElement.querySelectorAll('.settings__back-color');
+const textElements = rootElement.querySelectorAll('.text');
 
 
+form.addEventListener('change', (event) => {
+    event.preventDefault();
+    rootElement.style.fontFamily = `'${fontChangeSelect.value}', sans-serif`;
+    rootElement.style.fontSize = fontSize.value + "px";
+    rootElement.style.color = colorInput.value;
 
+    textElements.forEach((item) => {
+        item.style.lineHeight = settingsIntervalInput.value;
+    });
 
+    settingsBackColorInputs.forEach((item) => {
+        if (item.checked) {
+            rootElement.style.backgroundColor = item.value;
+        }
+    })
+
+});
 
 
 settingsCloseBtn.addEventListener('click', () => {
